@@ -15,8 +15,8 @@ const Signup = () => {
         event.preventDefault();
 
         let errors = [];
-        if (data.password !== data.confirm) {
-            errors.push({ field: ['password', 'confirm'], option: 'none', message: 'Les deux mots de passe ne correspondent pas :(' });
+        if (data.password !== data.password_check) {
+            errors.push({ field: ['password', 'password_check'], option: 'none', message: 'Les deux mots de passe ne correspondent pas :(' });
         }
         const reg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (!reg.test(String(data.email).toLowerCase())) {
@@ -81,7 +81,7 @@ const Signup = () => {
                 <label htmlFor="username">Pseudonyme : <input type="text" name="username" id="username" /></label>
                 <label htmlFor="email">Email : <input type="text" name="email" id="email" /></label>
                 <label htmlFor="password">Password : <input type="password" name="password" id="password" /></label>
-                <label htmlFor="confirm">Confirm : <input type="password" name="confirm" id="confirm" /></label>
+                <label htmlFor="password_check">Confirm : <input type="password" name="password_check" id="password_check" /></label>
                 <button>Send !</button>
             </form>
         </div>

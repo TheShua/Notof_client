@@ -16,7 +16,7 @@ const errorHandler = (error) => {
 const apiHandler = {
     service,
 
-    signup(userInfo) { return service.post(`/user`, userInfo).then((res) => res.data).catch(errorHandler); },
+    signup(userInfo) { return service.post(`/users`, userInfo).then((res) => res.data).catch(errorHandler); },
 };
 
 export default apiHandler;
