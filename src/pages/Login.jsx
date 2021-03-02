@@ -13,7 +13,7 @@ const Login = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (!data.username || data.username === '' || !data.password || data.password === '') {
+        if (!data.email || data.email === '' || !data.password || data.password === '') {
             console.error("ERROR ! ERROR ! ERROR ! ERROR !");
             return;
         }
@@ -27,8 +27,8 @@ const Login = () => {
     return (
         <div>
             <form onSubmit={handleSubmit} onChange={handleChange}>
-                <label htmlFor="username">Username : <input type="text" name="username" id="username" /></label>
-                <label htmlFor="password">Password : <input type="password" name="password" id="username" /></label>
+                <label htmlFor="email">Email : <input type="text" name="email" id="email" /></label>
+                <label htmlFor="password">Password : <input type="password" name="password" id="email" /></label>
                 <button>Log in</button>
             </form>
         </div>
