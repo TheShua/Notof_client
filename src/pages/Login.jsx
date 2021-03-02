@@ -20,7 +20,7 @@ const Login = () => {
 
         apiHandler.login(data).then(response => {
             console.log('LOG IN OK !');
-            history.path('/');
+            history.push('/');
         }).catch(error => console.error(error));
     }
 
