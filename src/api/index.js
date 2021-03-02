@@ -17,7 +17,7 @@ const apiHandler = {
     service,
 
     signup(userInfo) { return service.post(`/users`, userInfo).then((res) => res.data).catch(errorHandler); },
-    login(userInfo) { return service.get(`/auth/login`, userInfo).then((res) => res.data).catch(errorHandler); }
+    login(userInfo) { return service.post(`/auth/login`, userInfo).then((res) => res.data).catch(errorHandler); }
 };
 
 export default apiHandler;
