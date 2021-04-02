@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import apiHandler from 'api';
+import TextField from '@material-ui/core/TextField';
 
 const Signup = () => {
     const [data, setData] = React.useState();
@@ -36,7 +37,7 @@ const Signup = () => {
             return;
         } else {
             setErrors([]);
-            apiHandler.signup(data).then(result => {
+            apiHandler.signup(data).then(() => {
                 history.push('/');
             }).catch(error => {
                 console.log(error);
@@ -78,10 +79,18 @@ const Signup = () => {
             <h1>Sign up !</h1>
             {errors && showErrors()}
             <form onSubmit={handleSubmit} onChange={handleChange}>
-                <label htmlFor="username">Pseudonyme : <input type="text" name="username" id="username" /></label>
-                <label htmlFor="email">Email : <input type="text" name="email" id="email" /></label>
-                <label htmlFor="password">Password : <input type="password" name="password" id="password" /></label>
-                <label htmlFor="password_check">Confirm : <input type="password" name="password_check" id="password_check" /></label>
+                <div>
+                    <TextField required name="username" label="Pseudonyme" />
+                </div>
+                <div>
+                    <TextField required name="password" label="Mot de passe" type="password" autoComplete="current-password" />
+                </div>
+                <div>
+                    <TextField name="password_check" label="Confirmez le siouplait" type="password" autoComplete="current-password" />
+                </div>
+                <div>
+                    <TextField required name="email" label="Required" placeholder="Pseudonyme" />
+                </div>
                 <button>Send !</button>
             </form>
         </div>
