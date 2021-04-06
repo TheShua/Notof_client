@@ -3,19 +3,29 @@ import { UserContext } from 'components/Auth/UserContext';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
 
+import apiHandler from 'api'
+
 const ProfileEdit = () => {
     const { user } = useContext(UserContext);
     const [data, setData] = useState({})
 
     const handleSubmit = event => {
         event.preventDefault();
-        console.log("SUBMIIIIIIIIIT");
+        console.log(data);
+        apiHandler.editProfile(user._id, data).then(result => {
+            console.log("Notification : saved");
+        }).catch(e => console.log(e));
     }
 
     const handleChange = event => {
-        if(event)
-        setData({ ...data, [event.target.name]: event.target.value })
-        console.log(data);
+		const value =
+			event.target.type === 'file'
+				? event.target.files[0]
+				: event.target.type === 'checkbox'
+				? event.target.checked
+				: event.target.value;
+        
+        setData({ ...data, [event.target.name]: value })
     }
 
     if (!user) {
@@ -30,12 +40,6 @@ const ProfileEdit = () => {
                         <TextField required name="username" label="Pseudonyme" defaultValue={data.username} />
                     </div>
                     <div>
-                        <TextField required name="password" label="Mot de passe" type="password" autoComplete="current-password" />
-                    </div>
-                    <div>
-                        <TextField name="password_check" label="Confirmez le siouplait" type="password" autoComplete="current-password" />
-                    </div>
-                    <div>
                         <TextField required name="email" label="Email" defaultValue={data.email} />
                     </div>
                     <div>Avatar : 
@@ -47,7 +51,7 @@ const ProfileEdit = () => {
                             <input type="file" name="avatar" hidden />
                         </Button>
                     </div>
-                    <Button onClick={handleSubmit}>Send !</Button>
+                    <Button onClick={handleSubmit} variant="contained" color="primary">Send !</Button>
                 </form>
             </div>
         )

@@ -93,7 +93,7 @@ const Signup = () => {
                 <div>
                     <TextField required name="email" label="Email" />
                 </div>
-                <Button onClick={handleSubmit}>Send !</Button>
+                <Button onClick={handleSubmit} variant="contained" color="primary">Send !</Button>
             </form>
         </div>
     )

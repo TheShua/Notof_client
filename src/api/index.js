@@ -20,6 +20,8 @@ const apiHandler = {
     login(userInfo) { return service.post(`/auth/login`, userInfo).then((res) => res.data).catch(errorHandler); },
     isLoggedIn() { return service.get(`/auth/isLoggedIn`).then((res) => res.data).catch(errorHandler); },
     logout() { return service.get(`/auth/logout`).then((res) => res.data).catch(errorHandler); },
+
+    editProfile(userId, data) { return service.put(`/users/${userId}`, data).then(res => res.data).catch(errorHandler)},
 };
 
 export default apiHandler;

@@ -1,7 +1,10 @@
 import React, {useContext} from 'react'
 import { useHistory } from 'react-router-dom'
-import apiHandler from 'api'
 import { UserContext } from 'components/Auth/UserContext';
+import TextField from '@material-ui/core/TextField';
+import { Button } from '@material-ui/core';
+
+import apiHandler from 'api'
 
 const Login = () => {
 
@@ -29,9 +32,13 @@ const Login = () => {
     return (
         <div>
             <form onSubmit={handleSubmit} onChange={handleChange}>
-                <label htmlFor="email">Email : <input type="text" name="email" id="email" /></label>
-                <label htmlFor="password">Password : <input type="password" name="password" id="password" /></label>
-                <button>Log in</button>
+                <div>
+                    <TextField required name="email" label="Email" />
+                </div>
+                <div>
+                    <TextField required name="password" label="Password" type="pasword" />
+                </div>
+                <Button onClick={handleSubmit} variant="contained" color="primary">Log in</Button>
             </form>
         </div>
     )
