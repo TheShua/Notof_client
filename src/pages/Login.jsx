@@ -1,11 +1,13 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { useHistory } from 'react-router-dom'
 import apiHandler from 'api'
+import { UserContext } from 'components/Auth/UserContext';
 
 const Login = () => {
 
     const [data, setData] = React.useState({});
     const history = useHistory();
+    const {setUser} = useContext(UserContext);
 
     const handleChange = (event) => {
         setData({ ...data, [event.target.name]: event.target.value });
@@ -19,7 +21,7 @@ const Login = () => {
         }
 
         apiHandler.login(data).then(response => {
-            console.log('LOG IN OK !');
+            setUser(response);
             history.push('/');
         }).catch(error => console.error(error));
     }

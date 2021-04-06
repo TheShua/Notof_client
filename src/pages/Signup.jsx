@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 import apiHandler from 'api';
 import TextField from '@material-ui/core/TextField';
 
@@ -21,7 +22,7 @@ const Signup = () => {
         }
         const reg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (!reg.test(String(data.email).toLowerCase())) {
-            errors.push({field: 'mail', option: 'none', message: 'Votre adresse mail n\'est pas valide...' })
+            errors.push({field: 'email', option: 'none', message: 'Votre adresse mail n\'est pas valide...' })
         }
         if (data.password === '' || data.password === null) {
             errors.push({ field: 'password', option: 'empty', message: 'Mot de passe' });
@@ -36,6 +37,7 @@ const Signup = () => {
             setErrors(errors);
             return;
         } else {
+            console.log(data);
             setErrors([]);
             apiHandler.signup(data).then(() => {
                 history.push('/');
@@ -89,9 +91,9 @@ const Signup = () => {
                     <TextField name="password_check" label="Confirmez le siouplait" type="password" autoComplete="current-password" />
                 </div>
                 <div>
-                    <TextField required name="email" label="Required" placeholder="Pseudonyme" />
+                    <TextField required name="email" label="Email" />
                 </div>
-                <button>Send !</button>
+                <Button onClick={handleSubmit}>Send !</Button>
             </form>
         </div>
     )
