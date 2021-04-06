@@ -10,7 +10,7 @@ const Login = () => {
 
     const [data, setData] = React.useState({});
     const history = useHistory();
-    const {setUser} = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
 
     const handleChange = (event) => {
         setData({ ...data, [event.target.name]: event.target.value });
@@ -36,7 +36,7 @@ const Login = () => {
                     <TextField required name="email" label="Email" />
                 </div>
                 <div>
-                    <TextField required name="password" label="Password" type="pasword" />
+                    <TextField required name="password" label="Password" type="password" />
                 </div>
                 <Button onClick={handleSubmit} variant="contained" color="primary">Log in</Button>
             </form>

@@ -11,8 +11,11 @@ const ProfileEdit = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        console.log(data);
-        apiHandler.editProfile(user._id, data).then(result => {
+        const formData = new FormData();
+        Object.keys(data).forEach(key => {
+            formData.append(key, data[key]);
+        });
+        apiHandler.editProfile(user._id, formData).then(result => {
             console.log("Notification : saved");
         }).catch(e => console.log(e));
     }
@@ -37,10 +40,10 @@ const ProfileEdit = () => {
                 {/* {errors && showErrors()} */}
                 <form onSubmit={handleSubmit} onChange={handleChange}>
                     <div>
-                        <TextField required name="username" label="Pseudonyme" defaultValue={data.username} />
+                        <TextField required name="username" label="Pseudonyme" defaultValue={user.username} />
                     </div>
                     <div>
-                        <TextField required name="email" label="Email" defaultValue={data.email} />
+                        <TextField required name="email" label="Email" defaultValue={user.email} />
                     </div>
                     <div>Avatar : 
                         <Button
