@@ -8,8 +8,10 @@ const Navigation = () => {
     const history = useHistory();
 
     const Disconnect = () => {
-        setUser(null);
-        apiHandler.logout().then(() => history.push('/'));
+        apiHandler.logout().then(() => {
+            setUser(null);
+            history.push('/');
+        });
     }
 
     if (user) {
@@ -18,7 +20,7 @@ const Navigation = () => {
                 <ul>
                     <li><NavLink to="/">Home</NavLink></li>
                     <li><NavLink to="/profile">Edit Profile</NavLink></li>
-                    <li><span onClick={() => Disconnect}>BOBAYE</span></li>
+                    <li><button onClick={Disconnect}>BOBAYE</button></li>
                 </ul>
             </nav>
         )
