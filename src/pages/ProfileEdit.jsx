@@ -11,10 +11,12 @@ const ProfileEdit = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        const formData = new FormData();
-        Object.keys(data).forEach(key => {
-            formData.append(key, data[key]);
-        });
+        console.log('Start FormData...')
+        console.log(data);
+        let formData = new FormData();
+        if (data.username) formData.append('username', data.username);
+        if (data.email) formData.append('email', data.email);
+        if (data.avatar) formData.append('avatar', data.avatar);
         apiHandler.editProfile(user._id, formData).then(result => {
             console.log("Notification : saved");
         }).catch(e => console.log(e));
